@@ -10,7 +10,7 @@ SECURITY_HEADERS = [
 ]
 
 def scan_website(url: str) -> dict:
-    # Adiciona "https://" se o utilizador não colocar
+    # Adiciona "https://" 
     if not url.startswith(("http://", "https://")):
         url = "https://" + url
     
@@ -28,7 +28,7 @@ def scan_website(url: str) -> dict:
         sys.exit(1)
 
 def main():
-    # Ferramenta de linha de comandos para o utilizador inserir o site
+    # Ferramenta de linha de comandos para  inserires o teu site
     parser = argparse.ArgumentParser(description="Verifica segurança básica de um site.")
     parser.add_argument("site", help="Exemplo: example.com")
     args = parser.parse_args()
