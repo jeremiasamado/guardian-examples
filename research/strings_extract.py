@@ -4,7 +4,11 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from guardian_theme import banner
 
 
 def main() -> int:
@@ -14,6 +18,7 @@ def main() -> int:
     args = parser.parse_args()
     if not args.path.is_file():
         parser.error("path must point to a file")
+    banner("GUARDIAN / STRING TRIAGE", f"local artefact · minimum length {args.min_length}")
     data = args.path.read_bytes()
     ascii_strings = re.findall(rb"[\x20-\x7e]{%d,}" % args.min_length, data)
     wide_strings = re.findall(rb"(?:[\x20-\x7e]\x00){%d,}" % args.min_length, data)

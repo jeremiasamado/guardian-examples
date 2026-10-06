@@ -4,8 +4,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from guardian_theme import banner
 
 
 def read(url: str) -> str:
@@ -22,6 +27,7 @@ def main() -> int:
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         parser.error("URL must use http:// or https://")
     base = f"{parsed.scheme}://{parsed.netloc}"
+    banner("GUARDIAN / ENDPOINT MAP", f"authorised target · {parsed.netloc}")
     robots_url = urljoin(base, "/robots.txt")
     sitemap_url = urljoin(base, "/sitemap.xml")
     robots = read(robots_url)

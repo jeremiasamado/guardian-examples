@@ -5,7 +5,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from guardian_theme import banner
 
 
 def digest(path: Path) -> str:
@@ -22,6 +26,7 @@ def main() -> int:
     args = parser.parse_args()
     if not args.path.exists():
         parser.error("path does not exist")
+    banner("GUARDIAN / HASH INVENTORY", f"SHA-256 · {args.path}")
     files = [args.path] if args.path.is_file() else sorted(path for path in args.path.rglob("*") if path.is_file())
     print(json.dumps([{"path": str(path), "size": path.stat().st_size, "sha256": digest(path)} for path in files], indent=2))
     return 0

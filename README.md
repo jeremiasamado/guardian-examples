@@ -29,6 +29,7 @@ research/
 ├─ strings_extract.py       # printable ASCII/UTF-16LE string extraction
 ├─ hash_inventory.py        # SHA-256 inventory for a file or directory
 └─ bounded_bruteforce_demo.py # fixed local credential-guessing exercise
+guardian_theme.py             # shared purple terminal theme
 ```
 
 ## Quick start
@@ -52,6 +53,13 @@ The brute-force demo is deliberately different: it runs only against an
 in-memory synthetic fixture, uses a fixed eight-candidate list and has no
 network or user-supplied target. It demonstrates bounded credential auditing,
 not access against a real service.
+
+## Terminal style
+
+Every tool uses the shared `guardian_theme.py` module for a purple terminal
+signature. JSON remains on standard output; banners are sent to standard error
+so the tools still work cleanly in pipelines. Set `NO_COLOR=1` when plain
+output is needed.
 
 ## Scope
 

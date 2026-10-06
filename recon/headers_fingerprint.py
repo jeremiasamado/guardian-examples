@@ -4,8 +4,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from guardian_theme import banner
 
 
 def main() -> int:
@@ -16,6 +21,7 @@ def main() -> int:
     parsed = urlparse(url)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         parser.error("URL must use http:// or https://")
+    banner("GUARDIAN / HEADERS", f"authorised target · {parsed.netloc}")
     request = Request(url, method="HEAD", headers={"User-Agent": "guardian-examples/1.0"})
     with urlopen(request, timeout=15) as response:
         headers = {key.lower(): value for key, value in response.headers.items()}

@@ -4,9 +4,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from html.parser import HTMLParser
+from pathlib import Path
 from urllib.parse import urldefrag, urljoin, urlparse
 from urllib.request import Request, urlopen
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from guardian_theme import banner
 
 
 class SurfaceParser(HTMLParser):
@@ -49,6 +54,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("url")
     args = parser.parse_args()
+    banner("GUARDIAN / SURFACE MAP", f"authorised target · {urlparse(args.url).netloc or args.url}")
     final_url, body = fetch(args.url)
     origin = urlparse(final_url).netloc
     parser_impl = SurfaceParser()
