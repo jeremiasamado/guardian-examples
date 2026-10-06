@@ -54,21 +54,6 @@ in-memory synthetic fixture, uses a fixed eight-candidate list and has no
 network or user-supplied target. It demonstrates bounded credential auditing,
 not access against a real service.
 
-## Terminal style
-
-Every tool uses the shared `guardian_theme.py` module for a purple terminal
-signature. JSON remains on standard output; banners are sent to standard error
-so the tools still work cleanly in pipelines. Set `NO_COLOR=1` when plain
-output is needed.
-
-Interactive runs begin with the shared signature sequence:
-
-```text
-[•    ] LINKING BADBOY17 NODE
-[ •   ] TRACE CHANNEL OPEN
-[  •  ] EVIDENCE PATH READY
-```
-
 ## Scope
 
 Use the recon tools only against systems you own or are explicitly authorised
