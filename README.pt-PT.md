@@ -27,7 +27,8 @@ recon/
 research/
 ├─ file_triage.py           # identidade e triage básica de ficheiros locais
 ├─ strings_extract.py       # extracção de strings ASCII/UTF-16LE
-└─ hash_inventory.py        # inventário SHA-256 de ficheiro ou directório
+├─ hash_inventory.py        # inventário SHA-256 de ficheiro ou directório
+└─ bounded_bruteforce_demo.py # exercício local de guessing limitado
 ```
 
 ## Arranque rápido
@@ -40,7 +41,13 @@ python .\recon\endpoint_inventory.py https://example.com
 python .\research\file_triage.py .\sample.bin
 python .\research\strings_extract.py .\sample.bin
 python .\research\hash_inventory.py .\samples
+python .\research\bounded_bruteforce_demo.py
 ```
+
+O demo de brute force é diferente de propósito: corre apenas contra um fixture
+sintético em memória, usa uma lista fixa de oito candidatos e não tem rede nem
+aceita um alvo fornecido pelo utilizador. Mostra credential auditing limitado,
+não acesso contra um serviço real.
 
 As ferramentas de recon fazem no máximo um pedido por recurso descoberto e
 mantêm-se na mesma origem. Não fazem brute force de paths, não exploram

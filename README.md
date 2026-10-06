@@ -27,7 +27,8 @@ recon/
 research/
 ├─ file_triage.py           # local file identity and basic type triage
 ├─ strings_extract.py       # printable ASCII/UTF-16LE string extraction
-└─ hash_inventory.py        # SHA-256 inventory for a file or directory
+├─ hash_inventory.py        # SHA-256 inventory for a file or directory
+└─ bounded_bruteforce_demo.py # fixed local credential-guessing exercise
 ```
 
 ## Quick start
@@ -40,11 +41,17 @@ python .\recon\endpoint_inventory.py https://example.com
 python .\research\file_triage.py .\sample.bin
 python .\research\strings_extract.py .\sample.bin
 python .\research\hash_inventory.py .\samples
+python .\research\bounded_bruteforce_demo.py
 ```
 
 Recon tools make one request per discovered resource at most and stay on the
 same origin. They do not brute-force paths, exploit inputs, bypass controls or
 launch concurrent scans.
+
+The brute-force demo is deliberately different: it runs only against an
+in-memory synthetic fixture, uses a fixed eight-candidate list and has no
+network or user-supplied target. It demonstrates bounded credential auditing,
+not access against a real service.
 
 ## Scope
 
