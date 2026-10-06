@@ -1,11 +1,58 @@
+<div align="center">
+
+[PT-PT](./README.pt-PT.md) | **EN**
+
+<img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=36&duration=3200&pause=1200&color=8A00C4&background=00000000&center=true&vCenter=true&width=850&height=80&lines=GUARDIAN+RESEARCH+TOOLING;MAP+THE+SURFACE;TRIAGE+THE+ARTEFACT;FOLLOW+THE+EVIDENCE;RECON+%2F+RESEARCH+%2F+REPORT" alt="Guardian research tooling">
+
+<br>
+
+<img src="https://readme-typing-svg.demolab.com?font=VT323&size=24&duration=2600&pause=1000&color=E4BCFF&background=00000000&center=true&vCenter=true&width=850&height=40&lines=%3E+enumerate+%2F+fingerprint+%2F+triage;%3E+files+%2F+strings+%2F+hashes;%3E+observe+%E2%86%92+extract+%E2%86%92+document;Small+tools.+Clean+evidence." alt="Enumerate, fingerprint and triage">
+
+</div>
+
 # Guardian Examples
-Este repositório contém exemplos de scripts em Python que mostram minhas capacidades em automação, segurança básica e web scraping.
 
-## Projetos Disponíveis:
-1.  **Security Scanner**: Verifica se um site usa HTTPS e tem headers de segurança básicos.
-2.  **File Organizer**: Automatiza a organização de ficheiros numa pasta por tipo de extensão.
-3.  **Web Scraper**: Extrai dados de um site público (de treino) e guarda em formato legível.
+Small Python utilities for **authorised reconnaissance** and local research.
+The repository keeps the tooling deliberately narrow: collect what is visible,
+fingerprint the response, triage local artefacts and leave the interpretation
+to the operator.
 
+## Layout
 
-### Como Usar Cada Projeto:
-Cada pasta tem o script, um ficheiro `requirements.txt` (com as ferramentas necessárias) e instruções básicas.
+```text
+recon/
+├─ web_surface_mapper.py   # one-page surface map: links, forms and metadata
+├─ endpoint_inventory.py    # robots, sitemap and same-origin endpoint inventory
+└─ headers_fingerprint.py   # response headers, TLS scheme and server hints
+research/
+├─ file_triage.py           # local file identity and basic type triage
+├─ strings_extract.py       # printable ASCII/UTF-16LE string extraction
+└─ hash_inventory.py        # SHA-256 inventory for a file or directory
+```
+
+## Quick start
+
+```powershell
+python .\recon\headers_fingerprint.py https://example.com
+python .\recon\web_surface_mapper.py https://example.com
+python .\recon\endpoint_inventory.py https://example.com
+
+python .\research\file_triage.py .\sample.bin
+python .\research\strings_extract.py .\sample.bin
+python .\research\hash_inventory.py .\samples
+```
+
+Recon tools make one request per discovered resource at most and stay on the
+same origin. They do not brute-force paths, exploit inputs, bypass controls or
+launch concurrent scans.
+
+## Scope
+
+Use the recon tools only against systems you own or are explicitly authorised
+to assess. Use the research tools on files you are allowed to inspect. See
+[`SCOPE.md`](./SCOPE.md).
+
+<p>
+  <img src="./assets/badboy17jpg.jpg" width="24" height="24" alt="">
+  <strong>BadBoy17</strong>
+</p>
