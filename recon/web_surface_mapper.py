@@ -11,7 +11,7 @@ from urllib.parse import urldefrag, urljoin, urlparse
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from guardian_theme import banner
+from guardian_theme import banner, trace_sequence
 
 
 class SurfaceParser(HTMLParser):
@@ -54,6 +54,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("url")
     args = parser.parse_args()
+    trace_sequence()
     banner("GUARDIAN / SURFACE MAP", f"authorised target · {urlparse(args.url).netloc or args.url}")
     final_url, body = fetch(args.url)
     origin = urlparse(final_url).netloc

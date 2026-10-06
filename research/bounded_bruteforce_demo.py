@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from guardian_theme import GREEN, PURPLE, banner, paint
+from guardian_theme import GREEN, PURPLE, banner, paint, trace_sequence
 
 
 @dataclass(frozen=True)
@@ -41,6 +41,7 @@ def main() -> int:
     fixture = Fixture(username="lab-user", password_sha256=digest("orbit-17"))
     candidates = ["spring-01", "admin123", "ne0sync", "redteam", "orbit-16", "orbit-17", "password", "guardian"]
     if not args.quiet:
+        trace_sequence()
         banner("GUARDIAN / BOUNDED AUDIT", "local synthetic fixture · SHA-256 · max 8 candidates")
         print(paint("  target     ", PURPLE) + "local synthetic fixture")
         print(paint("  username   ", PURPLE) + fixture.username)

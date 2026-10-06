@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from guardian_theme import banner
+from guardian_theme import banner, trace_sequence
 
 
 def main() -> int:
@@ -21,6 +21,7 @@ def main() -> int:
     parsed = urlparse(url)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         parser.error("URL must use http:// or https://")
+    trace_sequence()
     banner("GUARDIAN / HEADERS", f"authorised target · {parsed.netloc}")
     request = Request(url, method="HEAD", headers={"User-Agent": "guardian-examples/1.0"})
     with urlopen(request, timeout=15) as response:

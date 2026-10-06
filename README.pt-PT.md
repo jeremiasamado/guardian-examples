@@ -61,6 +61,14 @@ assinatura roxa no terminal. O JSON continua no standard output; os banners
 vão para standard error para os scripts continuarem limpos em pipelines.
 Define `NO_COLOR=1` quando quiseres output sem cores.
 
+As execuções interactivas começam com a assinatura partilhada:
+
+```text
+[•    ] LINKING BADBOY17 NODE
+[ •   ] TRACE CHANNEL OPEN
+[  •  ] EVIDENCE PATH READY
+```
+
 ## Âmbito
 
 Usa a recon apenas contra sistemas teus ou para os quais tenhas autorização

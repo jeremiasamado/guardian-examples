@@ -10,7 +10,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from guardian_theme import banner
+from guardian_theme import banner, trace_sequence
 
 
 def read(url: str) -> str:
@@ -27,6 +27,7 @@ def main() -> int:
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         parser.error("URL must use http:// or https://")
     base = f"{parsed.scheme}://{parsed.netloc}"
+    trace_sequence()
     banner("GUARDIAN / ENDPOINT MAP", f"authorised target · {parsed.netloc}")
     robots_url = urljoin(base, "/robots.txt")
     sitemap_url = urljoin(base, "/sitemap.xml")
